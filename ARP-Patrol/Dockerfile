@@ -14,6 +14,9 @@ COPY arp_patrol.py /app/ <--- Script name updated here
 # Install Python packages (Scapy)
 RUN pip3 install scapy --break-system-packages
 
-# Copy the run script and make it executable
+# Copy and setup run.sh
 COPY run.sh /
 RUN chmod a+x /run.sh
+
+# Set the entry point
+ENTRYPOINT ["/run.sh"]
