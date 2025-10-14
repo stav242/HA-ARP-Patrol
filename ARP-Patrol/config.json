@@ -1,21 +1,16 @@
 {
-  "name": "HA-ARP Patrol Service",
+  "name": "ARP Patrol",
   "version": "1.0.0",
-  "slug": "arp-patrol", 
-  "description": "Custom Add-on for timed ARP poisoning DoS tests on the local network.",
-  "arch": ["amd64", "aarch64", "armv7"],
-  "stage": "experimental",
+  "slug": "4b1caa0e_arp_patrol",
+  "description": "ARP monitoring and patrol",
+  "arch": ["amd64", "armv7", "armhf"],
   "startup": "services",
-  "boot": "manual",
+  "boot": "auto",
+  "hassio_api": true,
+  "homeassistant_api": false,
   "host_network": true,
-  "options": {
-    "interface": "eth0"
-  },
-  "schema": {
-    "interface": "str"
-  },
-  "url": "https://github.com/stav242/ha-arp-patrol",
-  "panel_icon": "mdi:network-off",
-  "cmd": ["/bin/bash", "-c", "tail -f /dev/null"],
-  "init": false
+  "stdin": true,          <-- ADD THIS LINE
+  "map": ["config:rw"],
+  "options": {},
+  "schema": {}
 }
