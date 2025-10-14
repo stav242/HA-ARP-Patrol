@@ -18,7 +18,9 @@
   "url": "https://github.com/stav242/ha-arp-patrol",
   "panel_icon": "mdi:network-off",
   "cmd": ["/bin/bash", "-c", "tail -f /dev/null"],
+  "on_stdin": "/run.sh",
   "init": false
 }
+
 
 
