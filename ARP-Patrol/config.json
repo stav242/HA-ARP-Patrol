@@ -10,7 +10,7 @@
   "host_network": true,
   "stdin": true,
   "options": {
-    "interface": "eth0"
+    "interface": "enp0s25"
   },
   "schema": {
     "interface": "str"
@@ -20,4 +20,5 @@
   "cmd": ["/bin/bash", "-c", "tail -f /dev/null"],
   "init": false
 }
+
 
