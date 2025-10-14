@@ -5,18 +5,15 @@ FROM ${BUILD_FROM}
 # Set the working directory inside the container
 WORKDIR /app
 
-# Install system dependencies (jq is needed for run.sh)
+# Install system dependencies
 RUN apk add --no-cache tcpdump build-base python3 py3-pip jq
 
 # Copy your Python script into the container
-COPY arp_patrol.py /app/
+COPY arp_patrol.py /app/ <--- Script name updated here
 
 # Install Python packages (Scapy)
-# FIX: Use --break-system-packages to bypass the PEP 668 error
 RUN pip3 install scapy --break-system-packages
 
-# Make the Python script executable
-RUN chmod a+x /app/arp_patrol.py
-
-# No ENTRYPOINT or CMD here, relying on config.json and external service calls
-
+# Copy the run script and make it executable
+COPY run.sh /
+RUN chmod a+x /run.sh
