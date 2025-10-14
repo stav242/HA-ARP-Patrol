@@ -26,13 +26,13 @@ fi
 echo "[INFO] Starting ARP Blocker Service on $INTERFACE..."
 echo "[INFO] Target: $TARGET_IP, Duration: $DURATION seconds."
 
-# --- Execute the Python Script ---
-# Pass the arguments to the Python script
-python3 /app/arp_dos_service.py \
+# Execute the Python Script
+python3 /app/arp_patrol.py \ <--- Script name updated here
     "$TARGET_IP" \
     "$TARGET_MAC" \
     "$GATEWAY_IP" \
     "$GATEWAY_MAC" \
     "$DURATION" \
     "$INTERFACE"
+
 
