@@ -1,1 +1,21 @@
-
+{
+  "name": "ARP Blocker Service",
+  "version": "1.0.0",
+  "slug": "arp_blocker_service",
+  "description": "Custom Add-on for timed ARP poisoning DoS tests on the local network.",
+  "arch": ["amd64", "aarch64", "armv7"],
+  "stage": "experimental",
+  "startup": "services",
+  "boot": "manual",
+  "host_network": true,
+  "options": {
+    "interface": "eth0"
+  },
+  "schema": {
+    "interface": "str"
+  },
+  "url": "https://github.com/stav242/ha_arp_blocker",
+  "panel_icon": "mdi:network-off",
+  "cmd": ["/bin/bash", "-c", "tail -f /dev/null"],
+  "init": false
+}
