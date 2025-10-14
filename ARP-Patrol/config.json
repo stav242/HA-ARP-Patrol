@@ -1,7 +1,7 @@
 {
-  "name": "ARP Blocker Service",
+  "name": "ARP Patrol",
   "version": "1.0.0",
-  "slug": "arp_blocker_service",
+  "slug": "arp_patrol",
   "description": "Custom Add-on for timed ARP poisoning DoS tests on the local network.",
   "arch": ["amd64", "aarch64", "armv7"],
   "stage": "experimental",
@@ -14,8 +14,9 @@
   "schema": {
     "interface": "str"
   },
-  "url": "https://github.com/stav242/ha_arp_blocker",
+  "url": "https://github.com/stav242/ha-arp-patrol",
   "panel_icon": "mdi:network-off",
   "cmd": ["/bin/bash", "-c", "tail -f /dev/null"],
   "init": false
 }
+
