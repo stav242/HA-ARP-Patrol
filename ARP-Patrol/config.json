@@ -1,8 +1,8 @@
 {
   "name": "HA-ARP Patrol Service",
-  "version": "1.0.1",
-  "slug": "arp-patrol",
-  "description": "Custom Add-on for timed ARP patrol",
+  "version": "1.0.0",
+  "slug": "arp-patrol", 
+  "description": "Custom Add-on for timed ARP poisoning DoS tests on the local network.",
   "arch": ["amd64", "aarch64", "armv7"],
   "stage": "experimental",
   "startup": "services",
@@ -16,5 +16,6 @@
   },
   "url": "https://github.com/stav242/ha-arp-patrol",
   "panel_icon": "mdi:network-off",
+  "cmd": ["/bin/bash", "-c", "tail -f /dev/null"],
   "init": false
 }
