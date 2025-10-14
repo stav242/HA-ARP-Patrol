@@ -8,8 +8,6 @@
   "startup": "services",
   "boot": "manual",
   "host_network": true,
-  "hassio_api": true,
-  "stdin": true,
   "options": {
     "interface": "eth0"
   },
@@ -18,6 +16,5 @@
   },
   "url": "https://github.com/stav242/ha-arp-patrol",
   "panel_icon": "mdi:network-off",
-  "cmd": ["/bin/bash", "/app/run.sh"],
   "init": false
 }
