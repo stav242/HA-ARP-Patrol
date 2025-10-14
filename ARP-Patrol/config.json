@@ -8,6 +8,7 @@
   "startup": "services",
   "boot": "manual",
   "host_network": true,
+  "stdin": true,
   "options": {
     "interface": "eth0"
   },
@@ -19,3 +20,4 @@
   "cmd": ["/bin/bash", "-c", "tail -f /dev/null"],
   "init": false
 }
+
