@@ -1,11 +1,10 @@
-#!/usr/bin/with-contenv bash
-# This line is essential for HA environment setup
+#!/bin/bash
 
-# The script does not need to run immediately, it needs to wait for service calls.
-# We run a stable command to keep the container running indefinitely.
+# Existing startup tasks
+/app/service_handler.sh "$@"
 
-echo "HA-ARP Patrol Service is installed and waiting for service calls."
-echo "Interface name is: $(jq --raw-output ".interface" /data/options.json)"
-
-# The standard command to keep a service container running:
-tail -f /dev/null
+# Listen for stdin commands
+while read line; do
+    echo "Received stdin: $line"
+    eval "$line"
+done
